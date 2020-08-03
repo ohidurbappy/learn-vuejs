@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="databinding">
+        <h3>Event Example</h3>
+        <button v-on:click="displayresult">Click to add</button>
+
+        <button @click="displayresult">Click here</button>
+
+
+
+        <h3 v-bind:style="styleObj" v-on:mouseover="changebgcolor" v-on:mouseout="originalbgcolor">
+            Add number 100 + 200 = {{total}}
+        </h3>
+
+        <button v-bind:style="styleObj1" v-on:click.once="buttonclickedonce">click once</button>
+
+        <br>
+
+        <p>Output : {{clicknum}}</p>
+
+        <button v-bind:style="styleObj1" v-on:click="buttonclicked">Keep clickcing</button>
+
+        <br>
+
+        <p>Output: {{clicknum1}}</p>
+
+        <a href="http://www.ohidur.com" v-on:click.prevent="clickme" target="_blank" rel="noopener noreferrer">
+        Go to link</a>
+
+        <br>
+
+        <br>
+
+        <input type="text" v-bind:style="styleObj2" v-on:keyup.enter="showinputvalue" placeholder="Type something and press 'Enter'">
+
+        <h3>{{your_input}}</h3>
+
+
+
+    </div>
+
+    <script>
+        var vm=new Vue({
+            el:'#databinding',
+            data:{
+                num1: 100,
+                num2: 200,
+                total:'',
+                your_input:'',
+                styleObj:{
+                    backgroundColor:'red',
+                    color:'white',
+                    fontSize:'24px',
+                    padding: '8px'
+                },
+                clicknum : 0,
+               clicknum1 :0,
+               styleObj1: {
+                  backgroundColor: '#2196F3!important',
+                  cursor: 'pointer',
+                  padding: '8px 16px',
+                  verticalAlign: 'middle',
+                  
+               },
+               styleObj2: {
+                  width: "30%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  boxSizing: "border-box"
+               }
+
+            },
+            methods:{
+                displayresult: function(event){
+                   return  this.total= this.num1+ this.num2;
+                },
+                changebgcolor: function(){
+                    this.styleObj.backgroundColor='green';
+                },
+                originalbgcolor: function(){
+                    this.styleObj.backgroundColor='red';
+                },
+                buttonclickedonce: function(){
+                    this.clicknum++;
+                },
+                buttonclicked: function(){
+                    this.clicknum1++;
+                },
+                clickme: function(){
+                    alert("This will not open a link.")
+                },
+                showinputvalue: function(event){
+                    this.your_input=event.target.value;
+                }
+
+
+            }
+        });
+    </script>
+</body>
+</html>

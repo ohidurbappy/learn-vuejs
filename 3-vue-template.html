@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="vue.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS Template</title>
+</head>
+<body>
+
+    <div id="vue_det">
+        <h3>First Name: {{firstname}}</h3>
+
+        <h3>Last Name: {{lastname}}</h3>
+
+        <div v-html="htmlcontent"></div>
+
+        <img v-bind:src="imgSrc" width="250" height="300" alt="">
+
+    </div>
+
+    <script src="vue-template.js"></script>
+    
+</body>
+</html>

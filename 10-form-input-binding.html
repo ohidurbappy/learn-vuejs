@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+    <div id="formbinding">
+
+        <h3>Your name here:</h3>
+
+        <input type="text" v-model="fullname" placeholder="Your Name">
+
+        <h3>Entered Name: {{fullname}}</h3>
+
+        <h3>Your Message</h3>
+
+        <textarea v-model="message" placeholder="Your Message Here..."></textarea>
+
+        <p>Your Message: {{message}}</p>
+
+        <h3>Agreement</h3>
+
+        <input type="checkbox" v-model="checked" id="checkbox"> Do you agree?
+
+        <h3>Your Agreement: {{checked}}</h3>
+
+
+        <h3>Pick a color:</h3>
+
+        <input type="radio" name="" value="Black" id="black" v-model="picked_color"> Black
+        <input type="radio" name="" value="White" id="white" v-model="picked_color"> White
+
+        <h3>Your Picked Color: {{picked_color}}</h3>
+
+        <h3>Select your favorite language:</h3>
+
+        <select v-model="languages" name="" id="">
+
+            <option disabled value="">Select one language</option>
+            <option value="Java">Java</option>
+            <option value="C++">C++</option>
+            <option value="Python">Python</option>
+        </select>
+
+        <h3>Your chosen language: {{languages}}</h3>
+
+        <h3>Enter your age</h3>
+
+        <span>Age: </span><input type="number" v-model.number="age" name="" id="">
+
+        <h3>Your age is {{age}}</h3>
+
+        <h3>Your Bio</h3>
+
+        <span>Bio: </span> <input type="text" v-model.trim="bio" name="" id="">
+
+        <h3>Your Bio: {{bio}}</h3>
+
+        <h3>Your Username: </h3>
+
+        <span>Username: </span> <input type="text" v-model.lazy="username" name="" id="">
+
+        <h3>Username you have chosen is {{username}}</h3>
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el: '#formbinding',
+            data: {
+                fullname: '',
+                message: '',
+                checked: true,
+                picked_color: 'White',
+                languages:'Java',
+                age:0,
+                bio:'',
+                username:''
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

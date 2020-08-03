@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="databinding">
+
+        <div id="counter-event-example">
+
+            <p style="font-size: 25px;"> Language displayed: <b> {{ languageclicked }}</b></p>
+
+            <button-counter 
+            v-for="(item,index) in languages"
+            v-bind:item="item"
+            v-bind:index="index"
+            v-on:showlanguage="languagedisp"></button-counter>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        Vue.component('button-counter', {
+            template: '<button v-on:click="displaylanguage(item)">{{item}}</button>',
+            data: function(){
+                return {
+                    counter: 0
+                }
+            },
+            props: ['item'],
+            methods: {
+                displaylanguage: function(lng){
+                    console.log(lng);
+                    this.$emit('showlanguage',lng);
+
+                }
+            },
+        });
+
+
+        var vm=new Vue({
+            el:'#databinding',
+            data: {
+                languageclicked:'',
+                languages:['Java','C++','Python','Javascript','PHP']
+            },
+            methods: {
+                languagedisp: function(a){
+                    this.languageclicked=a;
+                }
+            }
+        });
+        
+    </script>
+    
+</body>
+</html>

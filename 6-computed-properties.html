@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="vue.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS computed properties</title>
+</head>
+<body>
+
+
+    <div id="computed_props">
+        First Name: <input type="text" v-model="firstname"/><br>
+        Last Name: <input type="text" v-model="lastname" /> <br>
+
+        <h1>My name is {{firstname}} {{lastname}}</h1>
+
+        <h1> Full Name is {{getFullName}}</h1>
+
+    </div>
+
+
+    <script>
+
+        var vm=new Vue({
+            el:'#computed_props',
+            data:{
+                firstname:'',
+                lastname:''
+            },
+            computed:{
+                getFullName : function(){
+                    return this.firstname + " " +this.lastname;
+                }
+            }
+        })
+
+    </script>
+
+    
+</body>
+</html>

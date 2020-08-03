@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <style>
+        .info {
+            color: #00529B;
+            background-color: #BDE5F8;
+         }
+         div {
+            margin: 10px 0;
+            padding: 12px;
+         }
+         .active {
+            color: #4F8A10;
+            background-color: #DFF2BF;
+         }
+         .displayError{
+            color: #D8000C;
+            background-color: #FFBABA;
+         }
+    </style>
+
+    <div id="databinding">
+        <h1>{{title}}</h1>
+
+        <a href="{{hreflink}}">Click Me</a> <br>
+        <a v-bind:href="hreflink">Click here</a> <br>
+        <a :href="hreflink">And Click here</a>
+
+    </div>
+
+    <script>
+        var vm=new Vue({
+            el:'#databinding',
+            data:{
+                hreflink:"https://www.ohidur.com",
+                title:"Databinding Example"
+            }
+
+        });
+    </script>
+
+
+
+    <div id="classbinding">
+
+        <div class="info" v-bind:class="{active:isActive,'displayError':hasError}">{{title}}</div>
+
+    </div>
+
+
+    <script>
+        var v=new Vue({
+            el:'#classbinding',
+            data:{
+                title:'Class Binding',
+                isActive:true,
+                hasError:false
+            }
+        })
+    </script>
+
+
+    <div id="classArrayBinding">
+        <div v-bind:class="[infoclass,errorclass]">{{title}}</div>
+    </div>
+
+    <script>
+        var vx=new Vue({
+            el:'#classArrayBinding',
+            data:{
+                title:'Class Array Binding Example',
+                infoclass:'info',
+                errorclass:'displayError'
+            }
+        })
+    </script>
+
+
+    <div id="classArrayBinding2">
+        <div v-bind:class="[isActive ? infoclass : '' , hasError ? errorclass : '']">{{title}}</div>
+    </div>
+    
+    <script>
+        var vu=new Vue({
+            el:'#classArrayBinding2',
+            data:{
+                title:'Another class array binding',
+                infoclass:'info',
+                errorclass:'displayError',
+                isActive:true,
+                hasError:false
+            }
+        })
+    </script>
+
+
+
+<div id="componentbinding">
+    <new_component  v-bind:class='{active:isActive}'>
+
+    </new_component>
+</div>
+
+<script>
+    var v2=new Vue({
+        el:'#componentbinding',
+        data:{
+            title:'This is component class binding example',
+            infoclass:'info',
+            errorclass:'displayError',
+            isActive:true,
+            hasError:true
+        },
+        components:{
+            'new_component':{
+                template: '<div class="info">Class binding for component</div>'
+            }
+        }
+    })
+</script>
+
+
+
+<div id="stylebinding">
+
+    <div v-bind:style="{color: activecolor,fontSize: fontsize + 'px'}">{{title}}</div>
+
+</div>
+
+<script>
+    var v3=new Vue({
+        el:'#stylebinding',
+        data:{
+            title:"Example of Inline style binding",
+            activecolor: 'red',
+            fontsize: '28'
+        }
+    })
+</script>
+
+
+
+<div id="styleobjectbinding">
+    <div v-bind:style="styleObj">{{title}}</div>
+</div>
+
+
+<script>
+    var v4=new Vue({
+        el:'#styleobjectbinding',
+        data:{
+            title:"Style Object Binding Example",
+            styleObj:{
+                color:'green',
+                fontSize:'46px'
+            }
+        }
+    })
+</script>
+
+
+
+
+
+
+    
+</body>
+</html>

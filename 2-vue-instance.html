@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="vue.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+
+        Name: {{name}} <br>
+        Age: {{age}} <br>
+        Gender: {{gender()}}
+
+    </div>
+
+    <script>
+        var _bio={name: "Sarah",age:21}
+
+        // var app=new Vue({
+        //     el:'#main',
+        //     data:_bio
+        // });
+
+        var BioComponent=Vue.extend({
+           
+            data: function(){
+               return _bio;
+           },
+           methods:{
+               gender : function(){
+                   return "Male";
+               }
+           }
+        });
+
+        var myBioComponent=new BioComponent({ el:'#main'});
+
+
+        var ProfileComponent=Vue.extend({
+            props:['religion','nationality'],
+            template:"<b>Religion: </b>{{religion}}<br><b>Nationality:</b>{{nationality}}</b>"
+        });
+
+
+        // propsData is used for unittesting
+        var myProfileComp=new ProfileComponent({
+            propsData: {
+                religion:"Islam",
+                nationality:"Bangladeshi"
+            }
+        });
+
+
+        var vm=new Vue({
+            data: {a:2},
+            computed:{
+                aSum: function(){
+                    return this.a+3;
+                },
+
+                aSquare: {
+                    get: function(){
+                        return this.a*this.a;
+                    },
+                    set: function(v){
+                        this.a=v*2;
+                    }
+                }
+            },
+            methods: {
+                aRootOver: function(){
+                    return this.a*(1/2);
+                }
+            }
+        });
+
+        console.log(vm.aSquare); //4
+        vm.aSquare=3;
+
+        console.log(vm.a); //6
+
+        console.log(vm.aSum); //9
+
+        console.log(vm.aRootOver()) //3
+
+        
+    </script>
+</body>
+</html>
