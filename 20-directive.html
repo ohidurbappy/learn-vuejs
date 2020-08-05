@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    
+<div id="databinding">
+    <div v-changestyle>VueJS Directive</div>
+
+    <div v-changefontsize="{fontSize: '34px'}">Hello from VueJS</div>
+</div>
+
+
+<script>
+
+    Vue.directive("changestyle",{
+        bind(el,binding,vnode){
+            console.log(el);
+            
+            console.log(vnode);
+            el.style.color="red";
+            el.style.fontSize="45px";
+        }
+
+    });
+
+    Vue.directive('changefontsize',{
+        bind(el,binding,vnode){
+            console.log(el);
+            el.style.color="green";
+            el.style.fontSize=binding.value.fontSize;
+        }
+    });
+
+    var vm=new Vue({
+        el:'#databinding',
+        data:{
+
+        },
+        methods: {
+            
+        },
+    });
+</script>
+
+</body>
+</html>

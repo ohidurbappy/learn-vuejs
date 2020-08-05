@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="databinding">
+        <input type="text" v-model="name" placeholder="Enter your name" id="">
+        <br>
+        <span style="font-size: 25px;"> Letter count is: {{name|countletters}}</span>
+
+        <br>
+
+        <span>The input is: {{ name | convert('html')}}</span>
+    </div>
+
+    <script>
+        var vm=new Vue({
+
+            el:'#databinding',
+            data:{
+                name: "",
+
+            },
+            filters: {
+                countletters: function(value){
+                    return value.length;
+                },
+                convert: function(value,type){
+                    if(type=='html'){
+                        return '<p>'+value+'</p>';
+                    }
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

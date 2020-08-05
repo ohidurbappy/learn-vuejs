@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <style>
+       .fade-enter-active, .fade-leave-active {
+            transition: opacity 2s
+         }
+         .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0
+         }
+
+         .shiftx-enter-active, .shiftx-leave-active {
+            transition: all 2s ease-in-out;
+         }
+         .shiftx-enter, .shiftx-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            transform :  translateX(100px);
+         }
+    </style>
+
+
+<div id="databinding">
+    <button v-on:click="toggleview">Toggle View</button>
+    <transition name="fade">
+        <p v-show="show" v-bind:style="styleObj">Animation Example</p>
+    </transition>
+</div>
+
+
+<script>
+    var vm=new Vue({
+        el:'#databinding',
+        data:{
+            show:true,
+            styleObj:{
+                fontSize: "24px",
+                color:'red'
+            }
+        },
+        methods: {
+            toggleview: function(){
+                this.show=!this.show;
+            }
+        }
+    });
+</script>
+
+<div id="databinding2">
+
+    <button v-on:click="show=!show">Click me</button>
+
+    <transition name="shiftx">
+
+        <p v-show="show">
+
+            <img  v-bind:src="imgSrc" height="100px" width="100px" alt="">
+
+        </p>
+
+        
+    
+    </transition>
+
+</div>
+
+<script>
+    var v=new Vue({
+        el:'#databinding2',
+        data: {
+            show: true,
+            imgSrc:"images/abid.jpg"
+
+        },
+        
+    });
+</script>
+
+
+    
+</body>
+</html>

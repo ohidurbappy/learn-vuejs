@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+      <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="databinding">
+
+        <button v-on:click="show =!show">Click me</button>
+
+
+        <transition v-on:before-enter="beforeEnter"
+        v-on:enter="enter"
+        v-on:leave="leave"
+        v-bind:css="false">
+
+        <p v-if="show">
+            Animation example with Velcocity and VueJS
+        </p>
+        
+        </transition>
+
+
+
+
+    </div>
+
+    <script type = "text/javascript">
+        var vm = new Vue({
+           el: '#databinding',
+           data: {
+              show: false
+           },
+           methods: {
+              beforeEnter: function (el) {
+                 el.style.opacity = 0
+              },
+              enter: function (el, done) {
+                 Velocity(el, { opacity: 1, fontSize: '25px' }, { duration: 1000 })
+                 Velocity(el, { fontSize: '10px' }, { complete: done })
+              },
+              leave: function (el, done) {
+                 Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 1500 })
+                 Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+                 Velocity(el, {
+                    rotateZ: '45deg',
+                    translateY: '30px',
+                    translateX: '30px',
+                    opacity: 0
+                 }, { complete: done })
+              }
+           }
+        });
+     </script>
+
+
+    
+</body>
+</html>

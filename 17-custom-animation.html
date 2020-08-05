@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href = "https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel = "stylesheet" type = "text/css">
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="databinding">
+
+
+        <button v-on:click="show=!show">Click Me</button>
+
+
+        <transition 
+        name="custom-classes-transition"
+        enter-active-class="animated swing"
+        leave-active-class="animated bounceIn">
+
+        <p v-show="show">
+            <span style="font-size: 25px;">Example</span> <br>
+
+            <img src="images/abid.jpg" style="width: 100px;height: 100px;" alt="">
+        </p>
+        
+        </transition>
+
+
+        <transition :duration="3000"
+        name="custom-classes-transition"
+        enter-active-class="animated swing"
+        leave-active-class="animated bounceIn">
+
+        <p v-show="show">
+            <span style="font-size: 25px;">Example</span> <br>
+            
+            <img src="images/abid.jpg" style="width: 100px;height: 100px;" alt="">
+        </p>
+        
+        </transition>
+
+        <transition 
+        name="custom-classes-transition"
+        enter-active-class="animated swing"
+        leave-active-class="animated bounceIn" :duration = "{ enter: 500, leave: 800 }">
+
+        <p v-show="show">
+            <span style="font-size: 25px;">Example</span> <br>
+            
+            <img src="images/abid.jpg" style="width: 100px;height: 100px;" alt="">
+        </p>
+        
+        </transition>
+
+    </div>
+
+    <script>
+        var vm=new Vue({
+            el:'#databinding',
+            data: {
+                show: true,
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

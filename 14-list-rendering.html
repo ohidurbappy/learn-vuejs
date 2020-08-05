@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="databinding">
+
+        <input type="text" name=""  v-on:keyup.enter="showinputvalue" v-bind:style="styleObj" placeholder="Enter a fruit name and press Enter" id="">
+
+        <h1 v-if="items.length>0">Names of fruits</h1>
+
+        <ul>
+            <li v-for="a in items">{{a}}</li>
+        </ul>
+
+        <h2 v-if="items.length>0">Fruit names with index</h2>
+
+        <ul>
+            <li v-for="(item,index) in items">{{index}} -- {{item}}</li>
+        </ul>
+
+
+    </div>
+
+
+    <script>
+        var vm=new Vue({
+            el:'#databinding',
+            data:{
+                items:[],
+                styleObj:{
+                    width: "30%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  boxSizing: "border-box"
+
+                }
+
+            },
+            methods:{
+                showinputvalue: function(event){
+                    this.items.push(event.target.value);
+                    event.target.value="";
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
